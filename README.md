@@ -27,6 +27,9 @@ Available presets (select to auto-configure all match parameters):
 - Add/remove points
 - Foul and penalty logging
 - Match clock management
+- Hotkey support for Start/Pause (Space)
+- Audio alert 15 seconds before match end
+- Loud end-of-match signal when time expires
 
 ## Screenshots
 
