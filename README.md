@@ -3,6 +3,10 @@
 Minimal desktop scoreboard and referee control app for traditional karate (WUKF/JKA).  
 Built with C# and Avalonia UI.
 
+## Download
+
+[⬇️ Download latest release](https://github.com/Bonislavsky/KarateJudge/releases/latest)
+
 ## Features
 
 **Rule Presets**
@@ -42,9 +46,6 @@ Available presets (select to auto-configure all match parameters):
 **Settings Screen**
 ![Settings Screen](https://github.com/user-attachments/assets/10cb7904-ef7c-4a3f-856d-14f2ed9945c5)
 
-## Download
-
-[⬇️ Download latest release](https://github.com/Bonislavsky/KarateJudge/releases/latest)
 
 ## Tech Stack
 
