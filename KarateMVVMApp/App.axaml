@@ -1,0 +1,62 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="KarateMVVMApp.App"
+             xmlns:local="using:KarateMVVMApp"
+             xmlns:helpers="using:KarateMVVMApp.Helpers"
+             RequestedThemeVariant="Dark">
+
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://KarateMVVMApp/Resources/Colors.axaml"/>
+                <ResourceInclude Source="avares://KarateMVVMApp/Resources/Templates.axaml"/>
+            </ResourceDictionary.MergedDictionaries>        
+        </ResourceDictionary>
+    </Application.Resources>
+
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>    
+        <StyleInclude Source="/Styles/Buttons.axaml"/>
+        <StyleInclude Source="/Styles/TextBlocks.axaml"/>
+        <StyleInclude Source="/Styles/Grids.axaml"/>
+        <StyleInclude Source="/Styles/Borders.axaml"/>
+        <StyleInclude Source="/Styles/NumericUpDowns.axaml"/>
+        <StyleInclude Source="/Styles/ComboBoxs.axaml"/>
+        <StyleInclude Source="/Styles/TextBoxs.axaml"/>
+        <StyleInclude Source="/Styles/CheckBoxs.axaml"/>
+
+        <Style Selector="FlyoutPresenter">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MaxWidth" Value="1300" />  
+            <Setter Property="MaxHeight" Value="1000" />  
+            <Setter Property="Background" Value="{StaticResource Transparent}" />
+        </Style>
+
+        <Style Selector="StackPanel.HorizontalSettingStackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Spacing" Value="10"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+
+        <Style Selector="ToolTip">
+            <Setter Property="Background" Value="{StaticResource AdminPanelButtonColor}"/>
+            <Setter Property="Foreground" Value="{StaticResource White}"/>
+            <Setter Property="BorderBrush" Value="#007ACC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="ShowDelay" Value="0"/>
+            <Setter Property="BetweenShowDelay" Value="0"/>
+        </Style>
+
+    </Application.Styles>
+</Application>

@@ -1,0 +1,40 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="TextBox.MyTextBox">
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="5"/>   
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="MaxWidth" Value="200"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="CaretBrush" Value="{StaticResource White}"/>
+    </Style>
+
+    <Style Selector="TextBox.MyTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+    </Style>
+
+    <Style Selector="TextBox.MyTextBox:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+    </Style>
+
+    <Style Selector="TextBox.PlayerNameSetterTextBox">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="550"/>
+        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Foreground" Value="#2D2D30"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+</Styles>

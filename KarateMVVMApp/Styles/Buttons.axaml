@@ -1,0 +1,87 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="Button.PressetsButton">
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Height" Value="55"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    
+    <Style Selector="Button.PressetsButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
+                 Button.PressetsButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+    </Style>
+
+    <Style Selector="Button.SettingsButton">
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+    </Style>
+
+    <Style Selector="Button">
+      <Setter Property="Focusable" Value="False"/>
+    </Style>
+  
+    <Style Selector="Button.SettingsButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="Button.SettingsButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="Button.AdminPanelButton">
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AdminPanelBorderBrushColor}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="1"/>
+    </Style>
+    <Style Selector="Button.AdminPanelButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonPressedColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Transparent}"/>
+    </Style>
+
+    <Style Selector="Button.AdminPanelButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonPressedColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Transparent}"/>
+    </Style>
+
+    <Style Selector="Button.AdminPanelButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonPressedColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Transparent}"/>
+    </Style>
+
+</Styles>

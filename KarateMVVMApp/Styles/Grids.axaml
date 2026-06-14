@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="DataGridColumnHeader">
+        <Setter Property="Background" Value="{StaticResource HeaderColumColor}" />
+        <Setter Property="Foreground" Value="{StaticResource Black}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="Padding" Value="5,0,0,0"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="CornerRadius" Value="10 10 0 0"/>
+        <Setter Property="SeparatorBrush" Value="{StaticResource Black}" />
+    </Style>
+
+    <Style Selector="DataGridCell">
+        <Setter Property="Foreground" Value="{StaticResource Black}" />
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>       
+
+    <Style Selector="Grid">
+        <Setter Property="ShowGridLines" Value="False"/>
+    </Style>
+
+</Styles>

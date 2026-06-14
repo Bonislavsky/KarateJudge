@@ -1,0 +1,317 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KarateMVVMApp.ViewModels"
+        xmlns:conv="using:KarateMVVMApp.Helpers.Converters"
+        x:Class="KarateMVVMApp.Views.SecondWindow"
+        Title="Second Window"
+        Width="1920"
+        Height="1080"
+        CornerRadius="50"
+        x:DataType="vm:SecondWindowViewModel">
+
+  <Window.Resources>
+    <conv:ContrastColorConverter x:Key="ContrastColorConverter"/>
+  </Window.Resources>
+
+  
+    <Grid>
+        <!-- Обычный режим -->
+        <Grid IsVisible="{Binding !IsGameOver}">
+          <Grid>
+            <!-- grid core-->
+            <Grid.RowDefinitions>
+              <RowDefinition Height="100"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="*" MinHeight="300"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- grid colors-->
+            <Border Background="{StaticResource Black}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                BorderThickness = "0"
+                Grid.RowSpan="7"/>
+
+            <Border Background="{Binding Settings.ColorAo}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderThickness = "0"/>
+
+            <Border Background="{Binding Settings.ColorAka}"
+                 Grid.Row="0"
+                 Grid.Column="2"
+                 Grid.ColumnSpan="2"
+                 BorderThickness = "0"/>
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Center">
+
+              <TextBlock
+                  Text="{Binding DisplayAoName}"
+                  FontSize="30"
+                  Width="550"
+                  TextWrapping="Wrap"
+                  Foreground="#2D2D30"
+                  FontWeight="SemiBold"
+                  TextAlignment="Center"/>
+            </StackPanel>
+
+
+            <StackPanel
+               Grid.Row="0"
+               Grid.Column="2"
+               Grid.ColumnSpan="2"
+               VerticalAlignment="Center">
+
+              <TextBlock
+                  Text="{Binding DisplayAkaName}"
+                  Width="550"
+                  TextWrapping="Wrap"
+                  FontSize="30"
+                  Foreground="#2D2D30"
+                  FontWeight="SemiBold"
+                  TextAlignment="Center"/>
+            </StackPanel>
+
+            <Image
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 80"
+                Height="300"
+                Width="300"
+                Stretch="Uniform"
+                Source="{Binding Settings.TournamentLogo}"
+                IsVisible="{Binding Settings.TournamentLogo, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <!-- AKA points 0,1{Binding AkaPoints} -->
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2">
+
+              <TextBlock Classes="MyTextBlock"
+                  Text="{Binding AoPoints}"
+                  FontSize="400"
+                  Padding="0 15 0 0"/>
+            </Border>
+
+            <!-- AKA CAT1 CAT2 2,1-->
+            <Grid
+                IsVisible="{Binding VisibilityCata}"
+                Grid.Row="4"
+                Grid.Column="0"
+                RowDefinitions = "1*, 3*"
+                ColumnDefinitions= "*, *">
+
+              <!-- CAT 1 Label -->
+              <Border
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 5 0 0"
+                    Text="CAT 1"
+                    FontSize="50"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+
+              <!-- CAT 1 Indicators {Binding DisplayAkaCat1Count}-->
+              <Border
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AoCat1Count}"
+                    Foreground="{StaticResource White}"
+                    FontSize="200"/>
+              </Border>
+
+              <!-- CAT 2 Label -->
+              <Border
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    Padding="0 5 0 0"
+                    FontWeight="Bold"
+                    Text="CAT 2"
+                    FontSize="50"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+
+              <!-- CAT 2 Indicators -->
+              <Border
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  BorderBrush="yellow"
+                  BorderThickness="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AoCat2Count}"
+                    FontSize="200"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+            </Grid>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- TIMER 2,1 {Binding TimerDisplay}-->
+            <Border
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top">
+
+              <TextBlock Classes="MyTextBlock"
+                  Text="{Binding TimerDisplay}"
+                  Foreground="{Binding TimerColor}"
+                  FontSize="200"
+                  Padding="0 0 0 16"
+                  FontWeight="Bold"/>
+            </Border>
+
+
+
+
+
+
+
+
+            <!-- AO points 1,3-->
+            <Border
+                Grid.Row="1"
+                Grid.Column="2"
+            
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2">
+
+              <TextBlock Classes="MyTextBlock"
+                  Text="{Binding AkaPoints}"
+                  FontSize="400"
+                  Padding="0 15 0 0"/>
+            </Border>
+
+            <!-- AO CAT1 CAT2 4,3-->
+            <Grid
+                IsVisible="{Binding VisibilityCata}"
+                Grid.Row="4"
+                Grid.Column="3"
+                RowDefinitions = "1*, 3*"
+                ColumnDefinitions= "*, *">
+
+              <!-- CAT 1 Label -->
+              <Border
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    Padding="0 5 0 0"
+                    Text="CAT 1"
+                    FontWeight="Bold"
+                    FontSize="50"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+
+              <!-- CAT 1 Indicators {Binding DisplayAkaCat1Count}-->
+              <Border
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AkaCat1Count}"
+                    Foreground="{StaticResource White}"
+                    FontSize="200"/>
+              </Border>
+
+              <!-- CAT 2 Label -->
+              <Border
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  BorderBrush="yellow"
+                  BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    Padding="0 5 0 0"
+                    FontWeight="Bold"
+                    Text="CAT 2"
+                    FontSize="50"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+
+              <!-- CAT 2 Indicators -->
+              <Border
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  BorderBrush="yellow"
+                  BorderThickness="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AkaCat2Count}"
+                    FontSize="200"
+                    Foreground="{StaticResource White}"/>
+              </Border>
+            </Grid>
+
+          </Grid>
+        </Grid>
+
+        <!-- Экран победы -->
+        <Border 
+            IsVisible="{Binding IsGameOver}"
+            Background="{Binding WinnerColor}">
+            
+            <StackPanel 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Spacing="40">
+                
+                <TextBlock Classes="MyTextBlock" 
+                    Text="{Binding WinnerText}"
+                    FontSize="120"
+                    FontWeight="Black"
+                    Foreground="{Binding WinnerColor, Converter={StaticResource ContrastColorConverter}}"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

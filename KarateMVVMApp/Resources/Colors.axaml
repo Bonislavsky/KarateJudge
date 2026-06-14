@@ -1,0 +1,23 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Existing colors -->
+    <SolidColorBrush x:Key="SettingBorderColor">#2d3748</SolidColorBrush>
+    <SolidColorBrush x:Key="SettingBackgroundColor">#1a1a2e</SolidColorBrush>
+    <SolidColorBrush x:Key="SettingBorderBrushColor">#5a687f</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="HeaderColumColor">#D3D3D3</SolidColorBrush>
+
+    <SolidColorBrush x:Key="AdminPanelButtonPressedColor">#4A4A4E</SolidColorBrush>
+    <SolidColorBrush x:Key="AdminPanelButtonColor">#2D2D30</SolidColorBrush>
+    <SolidColorBrush x:Key="AdminPanelBorderBrushColor">#404040</SolidColorBrush>
+
+    <!-- Basic colors -->
+    <SolidColorBrush x:Key="test">Red</SolidColorBrush>
+
+    <SolidColorBrush x:Key="Black">Black</SolidColorBrush>
+    <SolidColorBrush x:Key="White">White</SolidColorBrush>
+    <SolidColorBrush x:Key="Yellow">Yellow</SolidColorBrush>
+    <SolidColorBrush x:Key="Transparent">Transparent</SolidColorBrush>
+    
+</ResourceDictionary>

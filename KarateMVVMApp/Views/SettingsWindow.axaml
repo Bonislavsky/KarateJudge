@@ -1,0 +1,342 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KarateMVVMApp.ViewModels"
+        x:Class="KarateMVVMApp.Views.SettingsWindow"
+        x:DataType="vm:SettingsWindowViewModel"
+        Title="Game Settings" 
+        Width="800" 
+        Height="480"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    
+    <Border 
+        Background="{StaticResource SettingBackgroundColor}"
+        BorderThickness="0">
+        
+        <Grid 
+            
+            Margin="20"
+            RowDefinitions="Auto, *, Auto">
+
+            <!-- Заголовок -->
+            <Border 
+                Grid.Row="0"                
+                Margin="0,0,0,20">
+                <TextBlock Classes="MyTextBlock" 
+                    Text="Game Settings"
+                    FontSize="32"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- Основной контент: две колонки -->
+            <Grid Grid.Row="1" ColumnDefinitions="*, *" ColumnSpacing="10">
+
+                <!-- ЛЕВАЯ КОЛОНКА: Настройки -->
+                    <StackPanel Spacing="10">
+
+                        <!-- Логотип -->
+                        <Border Classes="SettingBorder">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10">
+        
+                                <Button 
+                                    Grid.Column="0"
+                                    Classes="SettingsButton"
+                                    Command="{Binding UploadLogoCommand}"
+                                    Padding="0">
+                                    <Border 
+                                        Classes="SettingsButton"
+                                        Width="120" Height="120"
+                                        BorderThickness="0"
+                                        ClipToBounds="True">
+                                        <Panel>
+                                            <Image Source="{Binding Settings.TournamentLogo}" 
+                                                    Stretch="Uniform"
+                                                    IsVisible="{Binding Settings.TournamentLogo, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+                                            <StackPanel 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                IsVisible="{Binding Settings.TournamentLogo, Converter={x:Static StringConverters.IsNullOrEmpty}}">
+                                                <TextBlock 
+                                                    Classes="MyTextBlock"
+                                                    Text="📷"
+                                                    HorizontalAlignment="Center"
+                                                    Margin="0,0,0,5"/>
+                                                <TextBlock 
+                                                    Classes="MyTextBlock"
+                                                    Text="Click to upload" 
+                                                    FontSize="11"
+                                                    Opacity="0.7"
+                                                    HorizontalAlignment="Left"/>
+                                            </StackPanel>
+                                        </Panel>
+                                    </Border>
+                                </Button>
+
+                                <Grid 
+                                    Grid.Column="1" 
+                                    RowDefinitions="Auto, Auto" 
+                                    RowSpacing="10"
+                                    HorizontalAlignment="Stretch"> 
+                                    <Button Classes="SettingsButton"
+                                        Grid.Row="0"
+                                        Content="Clear"
+                                        HorizontalAlignment="Left" 
+                                        Command="{Binding ResetLogoCommand}"/>
+                                    <Border 
+                                        Grid.Row="1"
+                                        Classes="SettingBorder"> <StackPanel Spacing="4">
+                                            <TextBlock 
+                                                Classes="NoticeTextBlock"
+                                                Text="Recommended: 400×400 px &#10;Formats: PNG, JPG, JPEG"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <!-- Цвета игроков -->
+                        <Border 
+                            Classes="SettingBorder">
+                            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <TextBlock 
+                                        Grid.Column="0"
+                                        Classes="LoggerSettingTextBlock" 
+                                        Text="AKA color (left):">
+                                        <ToolTip.Tip >
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Display color for the left competitor (AKA) throughout the match"/>
+                                        </ToolTip.Tip>
+                                    </TextBlock>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        Classes="LoggerSettingComboBox"
+                                        ItemsSource="{Binding AvailableColors}"
+                                        SelectedItem="{Binding SelectedAkaColor}"
+                                        ItemTemplate="{StaticResource ColorItemTemplate}"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <TextBlock 
+                                        Grid.Column="0"
+                                        Classes="LoggerSettingTextBlock" 
+                                        Text="AO color (right):">
+                                        <ToolTip.Tip >
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Display color for the right competitor (AO) throughout the match"/>
+                                        </ToolTip.Tip>
+                                    </TextBlock>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        Classes="LoggerSettingComboBox"
+                                        ItemsSource="{Binding AvailableColors}"
+                                        SelectedItem="{Binding SelectedAoColor}"
+                                        ItemTemplate="{StaticResource ColorItemTemplate}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Очки для победы -->
+                        <Border
+                            Classes="SettingBorder">
+                          <Grid ColumnDefinitions="Auto, *, *">
+                            <TextBlock
+                                Grid.Column="0"
+                                Classes="LoggerSettingTextBlock"
+                                Text="Points to Win: ">
+                              <ToolTip.Tip >
+                                <TextBlock Classes="ToolTipTextBlock" Text="Set the score limit for victory. Check 'Unlimited' for matches without a point cap"/>
+                              </ToolTip.Tip>
+                            </TextBlock>
+                            <CheckBox
+                                Grid.Column="1"
+                                Content="Unlimited"
+                                IsChecked="{Binding !HaslimitedPoints}"
+                                HorizontalAlignment="Left"
+                                FontSize="15"/>
+                            <NumericUpDown
+                                Grid.Column="2"
+                                IsEnabled="{Binding HaslimitedPoints}"
+                                HorizontalAlignment="Right"
+                                Classes="MyNumericUpDown"
+                                Value="{Binding PointsToWin}"
+                                Minimum="1"
+                                Maximum="99"
+                                Width="130"/>
+                          </Grid>
+                        </Border>                  
+                    </StackPanel>
+
+
+                <!-- ПРАВАЯ КОЛОНКА: Пресеты -->
+                <StackPanel 
+                    Grid.Column="1"
+                    Spacing="10">
+
+                    <!-- Match Presets -->
+                    <Border 
+                        Classes="SettingBorder">
+                        <StackPanel Spacing="10">
+                            <Grid 
+                                ColumnDefinitions="*, *" 
+                                RowDefinitions="*, *" 
+                                ColumnSpacing="10" 
+                                RowSpacing="10">
+                                <Button 
+                                    Grid.Row="0" Grid.Column="0"
+                                    Classes="PressetsButton"
+                                    Content="Shobu Ippon"
+                                    Command="{Binding ApplyMatchPresetCommand}"
+                                    CommandParameter="ShobuIppon">
+                                    <ToolTip.Tip>
+                                        <StackPanel>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AKA — White"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AO — Red"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Time — 2:00"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Points — 2"/>
+                                        </StackPanel>
+                                    </ToolTip.Tip>
+                                </Button>
+                                <Button 
+                                    Grid.Row="0" Grid.Column="1"
+                                    Classes="PressetsButton"
+                                    Content="Shobu Sanbon"
+                                    Command="{Binding ApplyMatchPresetCommand}"
+                                    CommandParameter="ShobuSanbon">
+                                    <ToolTip.Tip>
+                                        <StackPanel>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AKA — Blue"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AO — Red"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Time — 2:00"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Points — 6"/>
+                                        </StackPanel>
+                                    </ToolTip.Tip>
+                                </Button>
+                                <Button 
+                                    Grid.Row="1" Grid.Column="0"
+                                    Classes="PressetsButton"
+                                    Content="Shobu Nihon"
+                                    Command="{Binding ApplyMatchPresetCommand}"
+                                    CommandParameter="ShobuNihon">
+                                    <ToolTip.Tip>
+                                        <StackPanel>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AKA — Blue"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AO — Red"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Time — 1:30"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Points — 4"/>
+                                        </StackPanel>
+                                    </ToolTip.Tip>
+                                </Button>
+                                <Button 
+                                    Grid.Row="1" Grid.Column="1"
+                                    Classes="PressetsButton"
+                                    Content="Kata"
+                                    Command="{Binding ApplyMatchPresetCommand}"
+                                    CommandParameter="Kata">
+                                    <ToolTip.Tip>
+                                        <StackPanel>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AKA — Blue"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="AO — Red"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Time — Unlimited"/>
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Points — Unlimited"/>
+                                        </StackPanel>
+                                    </ToolTip.Tip>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border 
+                        Classes="SettingBorder">
+						            <StackPanel Spacing="10">
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <TextBlock 
+                                        Grid.Column="0"
+                                        Classes="LoggerSettingTextBlock" 
+                                        Text="Reset Time to:">
+                                        <ToolTip.Tip >
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Time value the timer returns to when pressing the reset button [↻]"/>
+                                        </ToolTip.Tip>
+                                    </TextBlock>
+                                    <ComboBox 
+                                        Grid.Column="1"
+                                        IsEnabled="{Binding HasTimeLimit}"
+                                        Classes="LoggerSettingComboBox"
+                                        ItemsSource="{Binding TimeToReset}"
+                                        SelectedItem="{Binding SelectedTimeToReset}"
+                                        DisplayMemberBinding="{Binding Display}">
+                                        </ComboBox>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto, *">
+                                    <TextBlock 
+                                        Grid.Column="0"
+                                        Classes="LoggerSettingTextBlock" 
+                                        Text="Reset name:">
+                                        <ToolTip.Tip >
+                                            <TextBlock Classes="ToolTipTextBlock" Text="Clear fighter names when pressing the reset button [↻]"/>
+                                        </ToolTip.Tip>
+                                    </TextBlock>
+                                    <CheckBox 
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        IsChecked="{Binding ClearNameOnReset}"
+                                        FontSize="15"/>
+                                </Grid>
+                        </StackPanel>
+                    </Border>
+                    <!-- Ограничение по времени -->
+                    <Border
+                        Classes="SettingBorder">
+                      <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock
+                            Grid.Column="0"
+                            Classes="LoggerSettingTextBlock"
+                            Text="Time limit:">
+                          <ToolTip.Tip >
+                            <TextBlock Classes="ToolTipTextBlock" Text="Enable or disable a time restriction for the match. When disabled, the match can run indefinitely"/>
+                          </ToolTip.Tip>
+                        </TextBlock>
+                        <CheckBox
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Content="Enable Time Limit"
+                            IsChecked="{Binding HasTimeLimit}"
+                            FontSize="15"/>
+                      </Grid>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- Кнопки управления -->
+            <Grid Grid.Row="2" 
+                  ColumnDefinitions="*, *" 
+                  ColumnSpacing="15" 
+                  Margin="0,19,0,0">
+                <Button 
+                    Classes="SettingsButton"
+                    Grid.Column="0"
+                    Content="✔️ Apply and Close"
+                    Command="{Binding ApplyAndCloseCommand}"
+                    FontSize="20"
+                    CornerRadius="10"
+                    Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"/>
+                <Button 
+                    Grid.Column="1"
+                    Classes="SettingsButton"
+                    Content="✖️ Cancel"
+                    Command="{Binding CloseCommand}"
+                    FontSize="20"
+                    CornerRadius="10"
+                    Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"/>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,78 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ComboBox.TimeSetterComboBox">   
+		<Setter Property="Background" Value="{StaticResource AdminPanelButtonColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Margin" Value="0,0,8,0"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Width" Value="90"/>
+    </Style>
+
+    <Style Selector="ComboBox.TimeSetterComboBox /template/ Popup > Border">
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="ComboBox.TimeSetterComboBox ComboBoxItem">
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonColor}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+
+    <Style Selector="ComboBox.TimeSetterComboBox ComboBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonPressedColor}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+
+    <Style Selector="ComboBox.TimeSetterComboBox ComboBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource AdminPanelButtonPressedColor}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Foreground" Value="{StaticResource White}" />
+    </Style>
+
+
+    <Style Selector="ComboBox.LoggerSettingComboBox">   
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="130"/>
+    </Style>
+
+    <Style Selector="ComboBox.LoggerSettingComboBox /template/ Popup > Border">
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="ComboBox.LoggerSettingComboBox:pointerover /template/ Border">
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="ComboBox.LoggerSettingComboBox ComboBoxItem">
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="ComboBox.LoggerSettingComboBox ComboBoxItem:pointerover /template/ ContentPresenter,
+                        ComboBox.LoggerSettingComboBox ComboBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+</Styles>

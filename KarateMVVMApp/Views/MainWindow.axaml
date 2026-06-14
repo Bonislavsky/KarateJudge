@@ -1,0 +1,626 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KarateMVVMApp.ViewModels"
+        xmlns:conv="using:KarateMVVMApp.Helpers.Converters"
+        x:Class="KarateMVVMApp.Views.MainWindow"
+        Title="main window"         
+        Width="1920" 
+        Height="1080"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="avares://KarateMVVMApp/Assets/Image/icon_cool.ico">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.KeyBindings>
+      <KeyBinding Gesture="Space" Command="{Binding PauseResumeMatchCommand}"/>
+    </Window.KeyBindings>
+    <Grid 
+          RowDefinitions="100,220,230,230,300"
+          ColumnDefinitions="*,*,*,*">
+
+            <!-- grid colors-->
+        <Border Background="{StaticResource Black}" 
+            Grid.Row="0"            
+            Grid.Column="0"   
+            Grid.ColumnSpan="4"          
+            Grid.RowSpan="7"
+            BorderThickness="0"/>
+
+        <Border Background="{Binding Settings.ColorAka}" 
+            Grid.Row="0"            
+            Grid.Column="0"   
+            Grid.ColumnSpan="2"
+            BorderThickness = "0"/>
+
+       <Border Background="{Binding Settings.ColorAo}" 
+            Grid.Row="0"            
+            Grid.Column="2"   
+            Grid.ColumnSpan="2"
+            BorderThickness = "0"/>
+
+        <TextBox 
+            Grid.Row="0"            
+            Grid.Column="0"   
+            Grid.ColumnSpan="2"
+            Margin="0 0 150 0"
+            Classes="PlayerNameSetterTextBox"
+            Text="{Binding AkaName, UpdateSourceTrigger=PropertyChanged}"
+            Watermark="Aka Name"
+            Background="{StaticResource Transparent}"/>
+
+        <TextBox 
+            Grid.Row="0"            
+            Grid.Column="2"   
+            Grid.ColumnSpan="2"
+            Margin="150 0 0 0"
+            Classes="PlayerNameSetterTextBox"
+            Text="{Binding AoName, UpdateSourceTrigger=PropertyChanged}"
+            Watermark="Ao Name"
+            Background="{StaticResource Transparent}"/>
+
+        <!-- AKA points -->
+        <Border
+            Grid.Row="1" 
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2">
+
+            <TextBlock Classes="MyTextBlock" 
+                Text="{Binding AkaPoints}"
+                FontSize="400"
+                Padding="0 15 0 0"/>                  
+        </Border>
+
+
+        <Grid 
+            Grid.Row="1" 
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            ColumnDefinitions="100"
+            HorizontalAlignment="Left"
+            RowDefinitions = "100, 100, 100, 100">
+
+            <Button 
+                Classes="AdminPanelButton"         
+                Content ="+1"
+                Grid.Row="0"
+                Command="{Binding AddAkaPointsCommand}" CommandParameter="1"/> 
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+2"
+                Grid.Row="1"
+                Command="{Binding AddAkaPointsCommand}" CommandParameter="2"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-1"
+                Grid.Row="2"
+                Command="{Binding AddAkaPointsCommand}" CommandParameter="-1"/> 
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-2"
+                Grid.Row="3"
+                Command="{Binding AddAkaPointsCommand}" CommandParameter="-2"/>
+        </Grid>        
+
+
+
+        <!-- AKA CAT 1 CAT 2 -->
+        <Grid
+            IsVisible="{Binding VisibilityCata}"
+            Grid.Row="4" 
+            Grid.Column="0"
+            RowDefinitions = "1*, 3*"
+            ColumnDefinitions="*, *">
+
+            <!-- CAT 1 Label -->
+            <Border
+                Grid.Row="0" 
+                Grid.Column="0"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">     
+                <TextBlock Classes="MyTextBlock" 
+                    FontWeight="Bold"
+                    Padding="0 5 0 0"
+                    Text="CAT 1"
+                    FontSize="50"/>
+            </Border>
+
+            <!-- CAT 1 Indicators -->
+            <Border 
+                Grid.Column="0"
+                Grid.Row="1"             
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AkaCat1Count}"
+                    FontSize="200"/>                             
+            </Border>
+
+            <!-- CAT 2 Label -->
+             <Border
+                Grid.Row="0" 
+                Grid.Column="1"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">      
+                <TextBlock Classes="MyTextBlock" 
+                    Padding="0 5 0 0"
+                    FontWeight="Bold"
+                    Text="CAT 2"
+                    FontSize="50"/>
+            </Border>
+
+            <!-- CAT 2 Indicators -->
+            <Border 
+                Grid.Column="1"
+                Grid.Row="1"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AkaCat2Count}"
+                    FontSize="200"/>   
+            </Border>
+        </Grid>
+
+        <!-- AKA CAT 1 CAT 2 button -->
+        <Grid
+            IsVisible="{Binding VisibilityCata}"
+            Grid.Row="3" 
+            Grid.Column="0"
+            ColumnDefinitions="*, *, *, *">        
+
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+"
+                Grid.Column="0"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding AddAkaCat1Command}"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-"
+                Grid.Column="1"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding SubtractAkaCat1Command}"/>                        
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+"
+                Grid.Column="2"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding AddAkaCat2Command}"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-"
+                Grid.Column="3"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding SubtractAkaCat2Command}"/>    
+        </Grid>
+
+        
+
+
+
+
+
+
+
+
+        <Border      
+            IsVisible="{Binding VisibilityTimer}"
+            Grid.Row="2" 
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Background="{StaticResource SettingBackgroundColor}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Padding="5"
+            CornerRadius="8">
+            <TextBlock 
+                Classes="MyTextBlock"
+                Text="{Binding MatchStatus}">
+                
+            </TextBlock>
+        </Border>
+
+
+
+         
+
+        <!-- TIMER -->
+        <Border
+            Grid.Row="3" 
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"                        
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+    
+            <TextBlock Classes="MyTextBlock"
+                Text="{Binding TimerDisplay}"
+                Foreground="{Binding TimerColor}"
+                FontSize="200"
+                Padding="0 0 0 16"
+                FontWeight="Bold"
+                TextAlignment="Center"/>
+        </Border>
+
+        
+        <!-- TIMER button -->
+        <Grid 
+            IsVisible="{Binding VisibilityTimer}"
+            Grid.Row="4" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            RowDefinitions = "*, *">
+
+            <Border
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{StaticResource AdminPanelButtonColor}"
+                CornerRadius="20"
+                Padding="15,10">
+    
+                <Grid
+                ColumnDefinitions="auto, auto, auto, auto">  
+                
+                    <ComboBox      
+                        Grid.Column="0"
+                        Classes="TimeSetterComboBox"
+                        ItemsSource="{Binding AvailableMinutesList}"    
+                        SelectedItem="{Binding SelectedMinutes}"
+                        IsEnabled="{Binding !IsTimerRunning}">
+                    </ComboBox>
+        
+                    <TextBlock Classes="MyTextBlock"
+                        Grid.Column="1"
+                        Text="m"
+                        Margin="0,0,8,0"
+                        FontSize="22"
+                        FontWeight="Bold"/>                 
+        
+                    <ComboBox    
+                        Grid.Column="2"                       
+                        Classes="TimeSetterComboBox"   
+                        ItemsSource="{Binding AvailableSecondsList}"    
+                        SelectedItem="{Binding SelectedSeconds}"
+                        IsEnabled="{Binding !IsTimerRunning}">
+                    </ComboBox>
+        
+                    <TextBlock Classes="MyTextBlock"
+                        Grid.Column="3"
+                        Text="s"
+                        FontSize="22"
+                        FontWeight="Bold"/>	            
+                </Grid>
+            </Border> 
+            <Grid 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                ColumnDefinitions="200, 200">					 
+
+               
+                <Button 
+                    Classes="AdminPanelButton"
+                    Content="start"
+                    Grid.Column="0"
+                    Command="{Binding StartTimerCommand}"
+                    IsEnabled="{Binding !IsTimerRunning}"/>
+
+                <Button 
+                    Classes="AdminPanelButton"
+                    Content="pause"
+                    Grid.Column="1"
+                    Command="{Binding PauseTimerCommand}"
+                    IsEnabled="{Binding IsTimerRunning}"/> 
+
+                <Border
+                        Grid.Column="0"
+                        Width="20"
+                        Height="20"
+                        CornerRadius="10"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="7 7 0 0"
+                        Tag="{Binding IsTimerRunning}">
+    
+                    <Border.Styles>
+                        <!-- Когда НЕ активна (таймер остановлен) - красный -->
+                        <Style Selector="Border[Tag=False]">
+                            <Setter Property="Background" Value="#FF5252"/>
+                            <Setter Property="BoxShadow" Value="0 0 2 0 #FF5252"/>
+                        </Style>
+
+                        <!-- Когда активна (таймер запущен) - зеленый с анимацией -->
+                        <Style Selector="Border[Tag=True]">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%">
+                                        <Setter Property="Background" Value="#4CAF50"/>
+                                        <Setter Property="BoxShadow" Value="0 0 2 0 #4CAF50"/>
+                                    </KeyFrame>
+                                    <KeyFrame Cue="100%">
+                                        <Setter Property="Background" Value="#2E7D32"/>
+                                        <Setter Property="BoxShadow" Value="0 0 15 2 #4CAF50"/>
+                                    </KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Border.Styles>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Border 
+            Grid.Row="0" 
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="0,10,0,0"
+            Background="#33000000" 
+            CornerRadius="10"
+            Padding="10,5">
+
+            <StackPanel Orientation="Horizontal" Spacing="10">
+
+            <Button 
+                Classes="AdminPanelButton"
+                Command="{Binding OpenSettingsCommand}"
+                ToolTip.Tip="Game Settings"
+                Width="70" Height="70">
+                <Image 
+                    Source="avares://KarateMVVMApp/Assets/Image/setting.png" 
+                    Width="32" 
+                    Height="32"/>
+            </Button>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content="⛶1"
+                Command="{Binding ToggleFullScreenCommand}"
+                ToolTip.Tip="Admin Fullscreen"
+                Width="70" Height="70"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content="⛶2" 
+                Command="{Binding FullScreenSpectatorsWindowCommand}"
+                ToolTip.Tip="Spectator Window Fullscreen"               
+                Width="70" Height="70"/>
+
+            <Grid>
+                <Button 
+                    Classes="AdminPanelButton"
+                    Content="↻"
+                    Command="{Binding ResetMatchCommand}"
+                    ToolTip.Tip="Reset Match"
+                    Width="70" Height="70"
+                    Name="ResetCommand"/>
+                    <Popup
+                        Placement="Bottom"
+                        IsOpen="{Binding IsExportSuccess}">
+                        <Border
+                            Background="{StaticResource SettingBackgroundColor}"
+                            BorderThickness="0"
+                            CornerRadius="8"
+                            Padding="8">
+                            <TextBlock
+                                Classes="ToolTipTextBlock"
+                                Text="Match log exported successfully"/>
+                        </Border>
+                    </Popup>
+            </Grid>
+           
+            <Button 
+                Classes="AdminPanelButton"
+                Content="✕"
+                Command="{Binding CloseApplicationCommand}"
+                ToolTip.Tip="Exit Application"      
+                Width="70" Height="70"/>
+
+            </StackPanel>
+        </Border>
+
+        <Image 
+            Grid.Row="1" 
+            Grid.RowSpan="2"
+            Grid.Column="1" 
+            Grid.ColumnSpan="2" 
+            VerticalAlignment="Center"
+            Height="400"
+            Width="400"
+            Stretch="Uniform"
+            Source="{Binding Settings.TournamentLogo}"
+            IsVisible="{Binding Settings.TournamentLogo, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- AO points -->
+        <Border
+            Grid.Row="1" 
+            Grid.Column="2"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2">
+
+            <TextBlock Classes="MyTextBlock" 
+                Text="{Binding AoPoints}"
+                FontSize="400"
+                Padding="0 15 0 0"/>                  
+        </Border>
+
+        <!-- AO points button -->
+        <Grid 
+            Grid.Row="1" 
+            Grid.Column="3"
+            Grid.RowSpan="2"
+            ColumnDefinitions="100"
+            HorizontalAlignment="Right"
+            RowDefinitions = "100, 100, 100, 100">
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+1"
+                Grid.Row="0"
+                Command="{Binding AddAoPointsCommand}" CommandParameter="1"/> 
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+2"
+                Grid.Row="1"
+                Command="{Binding AddAoPointsCommand}" CommandParameter="2"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-1"
+                Grid.Row="2"
+                Command="{Binding AddAoPointsCommand}" CommandParameter="-1"/> 
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-2"
+                Grid.Row="3"
+                Command="{Binding AddAoPointsCommand}" CommandParameter="-2"/>
+        </Grid>
+
+
+        <!-- AO CAT 1 CAT 2 2,4-->
+        <Grid 
+            IsVisible="{Binding VisibilityCata}"
+            Grid.Row="4" 
+            Grid.Column="3"
+            RowDefinitions = "1*, 3*"
+            ColumnDefinitions= "*, *">
+
+            <!-- CAT 1 Label -->
+            <Border
+                Grid.Row="0" 
+                Grid.Column="1"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">     
+                <TextBlock Classes="MyTextBlock" 
+                    Padding="0 5 0 0"
+                    Text="CAT 1"
+                    FontWeight="Bold"
+                    FontSize="50"/>
+            </Border>
+
+            <!-- CAT 1 Indicators -->
+            <Border 
+                Grid.Column="1"
+                Grid.Row="1"             
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AoCat1Count}"
+                    FontSize="200"/>                             
+            </Border>
+
+            <!-- CAT 2 Label -->
+            <Border
+                Grid.Row="0" 
+                Grid.Column="0"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness ="6">      
+                <TextBlock Classes="MyTextBlock" 
+                    Padding="0 5 0 0"
+                    FontWeight="Bold"
+                    Text="CAT 2"
+                    FontSize="50"/>
+            </Border>
+
+            <!-- CAT 2 Indicators -->
+            <Border 
+                Grid.Column="0"
+                Grid.Row="1"
+                BorderBrush="{StaticResource Yellow}"
+                BorderThickness="6">
+                <TextBlock Classes="MyTextBlock"
+                    FontWeight="Bold"
+                    Padding="0 15 0 0"
+                    Text="{Binding AoCat2Count}"
+                    FontSize="200"/>   
+            </Border>
+        </Grid>
+        
+        <Grid 
+            IsVisible="{Binding VisibilityCata}"
+            Grid.Row="3" 
+            Grid.Column="3"
+            ColumnDefinitions="*, *, *, *">
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+"
+                Grid.Column="0"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding AddAoCat2Command}"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-"
+                Grid.Column="1"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding SubtractAoCat2Command}"/>          
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="+"
+                Grid.Column="2"
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding AddAoCat1Command}"/>
+
+            <Button 
+                Classes="AdminPanelButton"
+                Content ="-"
+                Grid.Column="3"            
+                Height="80"
+                VerticalAlignment="Bottom"
+                Margin="2 0 0 5"
+                Command="{Binding SubtractAoCat1Command}"/>    
+        </Grid>
+    </Grid>
+</Window>

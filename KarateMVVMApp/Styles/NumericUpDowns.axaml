@@ -1,0 +1,46 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="NumericUpDown.MyNumericUpDown">
+        <Setter Property="Background" Value="{StaticResource SettingBorderColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SettingBorderBrushColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="5"/>   
+        <Setter Property="FormatString" Value="0"/> 
+        <Setter Property="Value" Value="1"/> 
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="MaxWidth" Value="200"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style Selector="NumericUpDown.MyNumericUpDown /template/ TextBox#PART_TextBox">
+        <Setter Property="Transitions" Value="{x:Null}"/>
+    </Style>
+
+    <Style Selector="NumericUpDown.MyNumericUpDown:focus-within /template/ TextBox#PART_TextBox /template/ Border">
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+        <Setter Property="Transitions" Value="{x:Null}"/>
+        <Setter Property="CornerRadius" Value="10 0 0 10"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
+    <Style Selector="NumericUpDown.MyNumericUpDown /template/ ButtonSpinner#PART_Spinner /template/ RepeatButton#PART_DecreaseButton /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="0 10 10 0"/>
+    </Style>
+
+    <Style Selector="NumericUpDown.MyNumericUpDown:pointerover">
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+    </Style>
+
+    <Style Selector="NumericUpDown.MyNumericUpDown:pointerover /template/ TextBox#PART_TextBox /template/ Border">
+        <Setter Property="Background" Value="{StaticResource SettingBackgroundColor}"/>
+        <Setter Property="CornerRadius" Value="10 0 0 10"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Transparent}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+</Styles>

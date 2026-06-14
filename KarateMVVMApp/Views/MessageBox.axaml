@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="KarateMVVMApp.MessageBox"
+        Width="520" Height="180"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Title="Clear Logs"
+        Background="{StaticResource SettingBackgroundColor}">
+        
+        <Border Margin="20" Classes="SettingBorder">
+            <StackPanel Spacing="10">
+                <TextBlock Name="Message" Classes="LoggerSettingTextBlock" TextWrapping="WrapWithOverflow"/>
+                <CheckBox Name="OptionalCheckBox"/>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+                    <Button Classes="SettingsButton" Content="Yes" Width="70" Name="YesButton"/>
+                    <Button Classes="SettingsButton" Content="No" Width="70" Name="NoButton"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+</Window>
